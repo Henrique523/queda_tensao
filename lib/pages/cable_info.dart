@@ -37,7 +37,8 @@ class CableInfo extends StatelessWidget {
               onChanged: (value) { },
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
+                floatingLabelBehavior: FloatingLabelBehavior.auto,
+                labelText: 'Nº de fases',
               ),
             ),
           ],
