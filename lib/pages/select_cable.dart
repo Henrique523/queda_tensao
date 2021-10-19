@@ -9,7 +9,7 @@ class SelectCable extends StatelessWidget {
   Widget build(BuildContext context) {
     final String _alluminiumPath = 'assets/images/cabo_aluminio.jpeg';
     final String _cupperPath = 'assets/images/cabo_cobre.jpg';
-    
+
     return BaseStructure(
       bodyComponent: Container(
         padding: const EdgeInsets.all(16),
@@ -38,7 +38,8 @@ class SelectCable extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.all(14),
                 ),
-                onPressed: () =>Navigator.of(context).pushNamed(AppRoutes.CABLE_INFO),
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.CABLE_INFO),
                 child: const Text(
                   'Próximo',
                   style: const TextStyle(
@@ -55,8 +56,6 @@ class SelectCable extends StatelessWidget {
   }
 
   Widget _cableButton(BuildContext context, String image, CableType cableType) {
-    CableType _cableType = Provider.of<CalcData>(context).cableType;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -69,22 +68,22 @@ class SelectCable extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Consumer<CalcData>(
-          builder: (ctx, calcData, child) => Image.asset(
-            image,
-            width: MediaQuery.of(context).size.width * 0.35,
-            height: MediaQuery.of(context).size.width * 0.35,
-          ),
+        Image.asset(
+          image,
+          width: MediaQuery.of(context).size.width * 0.35,
+          height: MediaQuery.of(context).size.width * 0.35,
         ),
-        TextButton.icon(
-          onPressed: () => Provider.of<CalcData>(context, listen: false)
-              .setCableType(cableType),
-          icon: Icon(_cableType == cableType
-              ? Icons.check_box_outlined
-              : Icons.check_box_outline_blank),
-          label: const Text('Selecionar'),
-          style: TextButton.styleFrom(
-            primary: Colors.black87,
+        Consumer<CalcData>(
+          builder: (ctx, calcData, child) => TextButton.icon(
+            onPressed: () => Provider.of<CalcData>(context, listen: false)
+                .setCableType(cableType),
+            icon: Icon(calcData.cableType == cableType
+                ? Icons.check_box_outlined
+                : Icons.check_box_outline_blank),
+            label: const Text('Selecionar'),
+            style: TextButton.styleFrom(
+              primary: Colors.black87,
+            ),
           ),
         ),
       ],
