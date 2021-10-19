@@ -1,6 +1,6 @@
 import 'dart:math';
 
-final num cupperResistivity = 2.82 * pow(10, -8);
+final num alluminiumResistivity = 2.82 * pow(10, -8);
 
 final List<Map<String, dynamic>> infoDiameterCables = [
   {

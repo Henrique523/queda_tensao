@@ -6,11 +6,31 @@ import 'package:queda_tensao/data/cables/aluminium.dart' as alluminium;
 import 'package:queda_tensao/data/cables/cupper.dart' as cupper;
 import 'package:queda_tensao/providers/calc_data.dart';
 
-class CableInfo extends StatelessWidget {
+class CableInfo extends StatefulWidget {
+  @override
+  _CableInfoState createState() => _CableInfoState();
+}
+
+class _CableInfoState extends State<CableInfo> {
+  bool _isLoading = false;
+
   List<String> cableSections(BuildContext context) {
     return Provider.of<CalcData>(context).cableType == CableType.CUPPER
-      ? alluminium.infoDiameterCables.map((item) => item['diameter'].toString()).toList()
-      : cupper.infoDiameterCables.map((item) => item['diameter'].toString()).toList();
+        ? cupper.infoDiameterCables
+            .map((item) => item['diameter'].toString())
+            .toList()
+        : alluminium.infoDiameterCables
+            .map((item) => item['diameter'].toString())
+            .toList();
+  }
+
+  void _calculate(BuildContext context) {
+    setState(() {
+      this._isLoading = !this._isLoading;
+    });
+
+    Provider.of<CalcData>(context, listen: false).calculateTensionFallPercentage();
+    return;
   }
 
   @override
@@ -48,6 +68,49 @@ class CableInfo extends StatelessWidget {
                 itemsList: cableSections(context),
                 label: 'Sessão do cabo',
                 onChanged: calcData.setNumberOfPhases,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Consumer<CalcData>(
+              builder: (ctx, calcData, child) => TextFormField(
+                initialValue: '',
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
+                  labelText: 'Comprimento do cabo',
+                  isDense: true,
+                ),
+                keyboardType: TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                textInputAction: TextInputAction.done,
+                onChanged: (value) =>
+                    calcData.setCableLength(value.isEmpty ? '0' : value),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                child: _isLoading 
+                  ? Center(
+                    child: CircularProgressIndicator(),
+                  ) 
+                  : null,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(14),
+                ),
+                onPressed: () => _calculate(context),
+                child: const Text(
+                  'Calcular',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],

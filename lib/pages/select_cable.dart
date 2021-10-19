@@ -36,7 +36,7 @@ class SelectCable extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.all(14),
+                  padding: const EdgeInsets.all(14),
                 ),
                 onPressed: () =>
                     Navigator.of(context).pushNamed(AppRoutes.CABLE_INFO),
