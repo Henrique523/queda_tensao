@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.queda_tensao">
+    package="br.com.example.queda_tensao_cabos_guilherme">
    <application
-        android:label="queda_tensao"
+        android:label="Queda de Tensão"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
