@@ -62,7 +62,7 @@ class SelectCable extends StatelessWidget {
       children: [
         Text(
           cableType == CableType.ALLUMINIUM ? 'Alumínio' : 'Cobre',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),

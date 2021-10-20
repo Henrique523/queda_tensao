@@ -73,13 +73,13 @@ class CableInfo extends StatelessWidget {
               Consumer<CalcData>(
                 builder: (ctx, calcData, child) => TextFormField(
                   initialValue: calcData.cableLength == 0 ? '' : calcData.cableLength.toString(),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration: const InputDecoration(
+                    border: const OutlineInputBorder(),
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
                     labelText: 'Comprimento do cabo (m)',
                     isDense: true,
                   ),
-                  keyboardType: TextInputType.numberWithOptions(
+                  keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
                   textInputAction: TextInputAction.done,

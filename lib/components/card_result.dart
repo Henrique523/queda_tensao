@@ -23,7 +23,7 @@ class CardResult extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "Queda de Tensão para ${voltage}V",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     color: Colors.black54,
                   ),
@@ -35,7 +35,7 @@ class CardResult extends StatelessWidget {
                     "${voltage == 127 
                       ? calcData.voltageFallPercentage127.toStringAsFixed(2) 
                       : calcData.voltageFallPercentage220.toStringAsFixed(2)}%",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       color: Colors.redAccent,
                       fontWeight: FontWeight.bold,

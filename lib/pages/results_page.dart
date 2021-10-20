@@ -12,9 +12,9 @@ class ResultsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
-              child: Text(
+              child: const Text(
                 'Resultados',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
