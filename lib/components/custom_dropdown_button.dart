@@ -25,7 +25,7 @@ class CustomDropdownButton extends StatelessWidget {
             ),
           )
           .toList(),
-      onChanged: (value) => onChanged,
+      onChanged: this.onChanged,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         floatingLabelBehavior: FloatingLabelBehavior.auto,

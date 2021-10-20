@@ -12,6 +12,9 @@ class CalcData with ChangeNotifier {
   String _numberOfPhases = 'Monofásico';
   String _cableSection = '2.5';
   double _cableLength = 0;
+  double _powerFactor = 0.8;
+  num _voltageFallPercentage220 = 0;
+  num _voltageFallPercentage127 = 0;
 
   double _tensionFallPercentage = 0;
 
@@ -20,6 +23,8 @@ class CalcData with ChangeNotifier {
   String get cableSection => this._cableSection;
   double get cableLength => this._cableLength;
   double get tensionFallPercentage => this._tensionFallPercentage;
+  num get voltageFallPercentage220 => this._voltageFallPercentage220;
+  num get voltageFallPercentage127 => this._voltageFallPercentage127;
 
   void setCableType(CableType cableType) {
     this._cableType = cableType;
@@ -44,15 +49,24 @@ class CalcData with ChangeNotifier {
   }
 
   void calculateTensionFallPercentage() {
-    String _phasesNumber = numberOfPhases == 'Monofásico' ? 'twoChargedCircuits' : 'threeChargedCircuits';
-    int _acValue = cableType == CableType.ALLUMINIUM
-      ? alluminium.infoDiameterCables.firstWhere((element) => element['diameter'] == int.parse(cableSection))[_phasesNumber]
-      : cupper.infoDiameterCables.firstWhere((element) => element['diameter'] == int.parse(cableSection))[_phasesNumber];
-
-    final testNumber = double.tryParse(this.cableSection.toString());
     num _resistivity = cableType == CableType.ALLUMINIUM ? alluminium.alluminiumResistivity : cupper.cupperResistivity;
+    num _cableSectionNum = num.parse(cableSection);
+    
+    num _resistence = (_resistivity * _cableLength) / _cableSectionNum;
 
+    String _phasesNumber = numberOfPhases == 'Monofásico' 
+      ? 'twoChargedCircuits' 
+      : 'threeChargedCircuits';
 
-    print(_acValue);
+    num _acValue = cableType == CableType.ALLUMINIUM
+      ? alluminium.infoDiameterCables.firstWhere((element) => element['diameter'].toString() == cableSection)[_phasesNumber]
+      : cupper.infoDiameterCables.firstWhere((element) => element['diameter'].toString() == cableSection)[_phasesNumber];
+
+    num _voltageFall = 2 * _resistence * _acValue * _powerFactor;
+
+    _voltageFallPercentage220 = 100 * (_voltageFall / 220);
+    _voltageFallPercentage127 = 100 * (_voltageFall / 127);
+
+    notifyListeners();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:queda_tensao/pages/cable_info.dart';
+import 'package:queda_tensao/pages/results_page.dart';
 import 'package:queda_tensao/pages/select_cable.dart';
 import 'package:queda_tensao/providers/calc_data.dart';
 import 'package:queda_tensao/utils/app_routes.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.HOME: (ctx) => SelectCable(),
           AppRoutes.CABLE_INFO: (ctx) => CableInfo(),
+          AppRoutes.RESULTS_PAGE: (ctx) => ResultsPage(),
         },
       ),
     );

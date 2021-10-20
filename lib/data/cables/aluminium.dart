@@ -1,6 +1,4 @@
-import 'dart:math';
-
-final num alluminiumResistivity = 2.82 * pow(10, -8);
+final num alluminiumResistivity = 0.0282;
 
 final List<Map<String, dynamic>> infoDiameterCables = [
   {
