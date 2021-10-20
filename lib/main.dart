@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Queda Tensão',
         theme: ThemeData(
+          fontFamily: 'Montserrat',
           primarySwatch: Colors.blue,
           accentColor: Colors.green,
         ),
